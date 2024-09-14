@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://ds0rllae2fcha"]
+
+[ext_resource type="Shader" path="res://resources/outline.gdshader" id="1_3vi6b"]
+[ext_resource type="Script" path="res://objects/scripts/player.gd" id="2_7qc65"]
+[ext_resource type="Texture2D" uid="uid://n4i86iv0lcjk" path="res://assets/sprites/player.png" id="3_7cl3b"]
+[ext_resource type="PackedScene" uid="uid://nrmdruikwdjt" path="res://joystick.tscn" id="4_3pg13"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8qxbp"]
+shader = ExtResource("1_3vi6b")
+shader_parameter/color = Color(0.603922, 1, 0.588235, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 1
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l26ul"]
+bounce = 0.2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nbfcf"]
+radius = 4.0
+
+[sub_resource type="Curve" id="Curve_e60cy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[node name="Player" type="RigidBody2D"]
+material = SubResource("ShaderMaterial_8qxbp")
+physics_material_override = SubResource("PhysicsMaterial_l26ul")
+script = ExtResource("2_7qc65")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("3_7cl3b")
+offset = Vector2(0, -4)
+hframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_nbfcf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+editor_draw_drag_margin = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Joystick" parent="CanvasLayer" instance=ExtResource("4_3pg13")]
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = 1
+position = Vector2(0, -14)
+points = PackedVector2Array(0, 0, 0, 0)
+width = 4.0
+width_curve = SubResource("Curve_e60cy")
+default_color = Color(0.376471, 0.329412, 0.509804, 1)
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[connection signal="released" from="CanvasLayer/Joystick" to="." method="_on_joystick_released"]
+[connection signal="value_changed" from="CanvasLayer/Joystick" to="." method="_on_joystick_value_changed"]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://nrmdruikwdjt"]
+
+[ext_resource type="Script" path="res://joystick.gd" id="1_u7pv0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kam6y"]
+bg_color = Color(0.164706, 0.168627, 0.207843, 0.572549)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.623529, 0.572549, 0.764706, 1)
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+anti_aliasing = false
+
+[sub_resource type="Curve" id="Curve_q78rw"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Joystick" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_u7pv0")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_kam6y")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width_curve = SubResource("Curve_q78rw")
+default_color = Color(0.411765, 0.360784, 0.54902, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
