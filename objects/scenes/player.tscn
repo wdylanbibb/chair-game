@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ds0rllae2fcha"]
 
-[ext_resource type="Shader" path="res://resources/outline.gdshader" id="1_3vi6b"]
+[ext_resource type="Shader" path="res://resources/shaders/outline.gdshader" id="1_3vi6b"]
 [ext_resource type="Script" path="res://objects/scripts/player.gd" id="2_7qc65"]
 [ext_resource type="Texture2D" uid="uid://n4i86iv0lcjk" path="res://assets/sprites/player.png" id="3_7cl3b"]
 [ext_resource type="PackedScene" uid="uid://nrmdruikwdjt" path="res://joystick.tscn" id="4_3pg13"]
@@ -17,7 +17,7 @@ shader_parameter/add_margins = true
 bounce = 0.2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nbfcf"]
-radius = 4.0
+radius = 5.0
 
 [sub_resource type="Curve" id="Curve_e60cy"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
@@ -25,6 +25,8 @@ point_count = 2
 
 [node name="Player" type="RigidBody2D"]
 material = SubResource("ShaderMaterial_8qxbp")
+collision_layer = 4
+collision_mask = 11
 physics_material_override = SubResource("PhysicsMaterial_l26ul")
 script = ExtResource("2_7qc65")
 

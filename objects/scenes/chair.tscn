@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://3fmhpbarhqqi"]
 
-[ext_resource type="Shader" path="res://resources/outline.gdshader" id="1_g8wgv"]
+[ext_resource type="Shader" path="res://resources/shaders/outline.gdshader" id="1_g8wgv"]
 [ext_resource type="Script" path="res://objects/scripts/chair.gd" id="2_pyv6p"]
 [ext_resource type="Texture2D" uid="uid://bx0j6j76ovpqp" path="res://assets/sprites/chair.png" id="3_pgpdf"]
 
@@ -20,6 +20,8 @@ radius = 4.0
 
 [node name="Chair" type="RigidBody2D"]
 material = SubResource("ShaderMaterial_8qxbp")
+collision_layer = 2
+collision_mask = 15
 physics_material_override = SubResource("PhysicsMaterial_l26ul")
 script = ExtResource("2_pyv6p")
 

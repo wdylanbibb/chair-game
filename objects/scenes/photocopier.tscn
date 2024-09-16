@@ -1,0 +1,357 @@
+[gd_scene load_steps=21 format=3 uid="uid://b03p6eywf75xw"]
+
+[ext_resource type="Shader" path="res://resources/shaders/outline.gdshader" id="1_of10g"]
+[ext_resource type="Script" path="res://objects/scripts/photocopier.gd" id="2_crwlp"]
+[ext_resource type="Texture2D" uid="uid://2ovjrl6klwws" path="res://assets/sprites/paper.png" id="2_oxpxo"]
+[ext_resource type="Texture2D" uid="uid://ca0t5qlcelam1" path="res://assets/sprites/photocopier.png" id="2_vabuw"]
+
+[sub_resource type="Gradient" id="Gradient_84flk"]
+offsets = PackedFloat32Array(0.646497, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ewh5j"]
+gradient = SubResource("Gradient_84flk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3cj6x"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(1, -1, 0)
+spread = 18.631
+initial_velocity_min = 109.76
+initial_velocity_max = 124.39
+gravity = Vector3(0, 98, 0)
+color_ramp = SubResource("GradientTexture1D_ewh5j")
+
+[sub_resource type="Gradient" id="Gradient_sb060"]
+offsets = PackedFloat32Array(0.78344, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7o7h5"]
+gradient = SubResource("Gradient_sb060")
+
+[sub_resource type="Curve" id="Curve_ghcbq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7ks05"]
+curve = SubResource("Curve_ghcbq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ticuu"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(3, 1, 1)
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, -50, 0)
+scale_min = 3.0
+scale_max = 7.0
+scale_curve = SubResource("CurveTexture_7ks05")
+color = Color(0.705194, 0.705194, 0.705194, 1)
+color_ramp = SubResource("GradientTexture1D_7o7h5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4r4sl"]
+shader = ExtResource("1_of10g")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 2
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rk63"]
+size = Vector2(7, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ww613"]
+size = Vector2(9, 6)
+
+[sub_resource type="Animation" id="Animation_2wi4k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Photocopier:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Photocopier:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Photocopier:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PaperParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SmokeParticles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5tw5c"]
+resource_name = "hit_left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Photocopier:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2, 0.233333, 0.266667, 0.3),
+"transitions": PackedFloat32Array(1, 3.13833, 3.86374, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(4.245, -1.255), Vector2(0, 0), Vector2(-0.665, -0.45), Vector2(0.695, -0.35), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Photocopier:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2, 0.233333, 0.266667, 0.3),
+"transitions": PackedFloat32Array(1, 3.13833, 3.86374, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.417134, 0.0, -0.0698132, 0.0698132, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PaperParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SmokeParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_41s3r"]
+resource_name = "hit_right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Photocopier:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2, 0.233333, 0.266667, 0.3),
+"transitions": PackedFloat32Array(1, 3.13833, 3.86374, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-4.385, -1.69), Vector2(0, 0), Vector2(0.695, -0.37), Vector2(-0.695, -0.42), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Photocopier:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2, 0.233333, 0.266667, 0.3),
+"transitions": PackedFloat32Array(1, 3.13833, 3.86374, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.417134, 0.0, 0.0698132, -0.0698132, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PaperParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SmokeParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_h5hth"]
+resource_name = "final_hit"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Photocopier:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-0.68, -0.46), Vector2(0.695, -0.395), Vector2(-0.688, -0.417)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Photocopier:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0698132, 0.0698132, -0.0698132]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Photocopier:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.760784, 0.760784, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PaperParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SmokeParticles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vau1a"]
+_data = {
+"RESET": SubResource("Animation_2wi4k"),
+"final_hit": SubResource("Animation_h5hth"),
+"hit_left": SubResource("Animation_5tw5c"),
+"hit_right": SubResource("Animation_41s3r")
+}
+
+[node name="Photocopier" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("2_crwlp")
+
+[node name="PaperParticles" type="GPUParticles2D" parent="."]
+position = Vector2(5, -2)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_3cj6x")
+texture = ExtResource("2_oxpxo")
+lifetime = 0.5
+
+[node name="SmokeParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, -7)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_ticuu")
+
+[node name="Photocopier" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_4r4sl")
+texture = ExtResource("2_vabuw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 6)
+shape = SubResource("RectangleShape2D_8rk63")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(-0.5, 6)
+shape = SubResource("RectangleShape2D_ww613")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vau1a")
+}
+
+[node name="Marker2D" type="Marker2D" parent="."]
+visible = false
+position = Vector2(-6, 9.5)
+metadata/_edit_lock_ = true
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+visible = false
+position = Vector2(5, 9.5)
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

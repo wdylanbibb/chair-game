@@ -11,7 +11,6 @@ config_version=5
 [application]
 
 config/name="Chair Game"
-run/main_scene="res://Menus/Scenes/TitleScreen.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 

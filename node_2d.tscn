@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://cijg4fqg6qujk"]
+[gd_scene load_steps=11 format=4 uid="uid://cijg4fqg6qujk"]
 
 [ext_resource type="Texture2D" path="/home/dylan/Dev/Godot/godot4/projects/chair-game/assets/sprites/steel_walls.png" id="1_3yorl"]
 [ext_resource type="Texture2D" uid="uid://dr3ax0n3ouaqi" path="res://assets/sprites/office_floor.png" id="1_61c81"]
 [ext_resource type="PackedScene" uid="uid://ds0rllae2fcha" path="res://objects/scenes/player.tscn" id="3_ej0ml"]
 [ext_resource type="PackedScene" uid="uid://3fmhpbarhqqi" path="res://objects/scenes/chair.tscn" id="4_uvoom"]
+[ext_resource type="PackedScene" uid="uid://d2xw5ru8e1xgg" path="res://objects/scenes/paper_stack.tscn" id="5_00ohj"]
+[ext_resource type="PackedScene" uid="uid://b03p6eywf75xw" path="res://objects/scenes/photocopier.tscn" id="6_rxo7r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l35eu"]
 resource_name = "Floor"
@@ -1114,10 +1116,17 @@ tile_set = SubResource("TileSet_2qlls")
 
 [node name="Player" parent="Walls" instance=ExtResource("3_ej0ml")]
 y_sort_enabled = true
-position = Vector2(296, 114)
+position = Vector2(294, 92)
 
 [node name="Chair" parent="Walls" instance=ExtResource("4_uvoom")]
-position = Vector2(142, 91)
+position = Vector2(264, 93)
 
 [node name="Chair2" parent="Walls" instance=ExtResource("4_uvoom")]
 position = Vector2(96, 99)
+
+[node name="PaperStack" parent="Walls" instance=ExtResource("5_00ohj")]
+position = Vector2(199, 126)
+papers = 30
+
+[node name="Photocopier" parent="Walls" instance=ExtResource("6_rxo7r")]
+position = Vector2(225, 82)

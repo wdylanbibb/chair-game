@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2xw5ru8e1xgg"]
+
+[ext_resource type="Shader" path="res://resources/shaders/outline.gdshader" id="1_7y3ur"]
+[ext_resource type="Script" path="res://objects/scripts/paper_stack.gd" id="1_j3h1t"]
+[ext_resource type="Texture2D" uid="uid://bdoh52tdtpglc" path="res://assets/sprites/paper_profile.png" id="2_i1lf8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aj3s8"]
+shader = ExtResource("1_7y3ur")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 2
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nj8je"]
+size = Vector2(4, 8)
+
+[node name="PaperStack" type="Area2D"]
+material = SubResource("ShaderMaterial_aj3s8")
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("1_j3h1t")
+papers = 1
+paper_texture = ExtResource("2_i1lf8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.19209e-07, -1)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_nj8je")
+
+[connection signal="all_papers_destroyed" from="." to="." method="_on_all_papers_destroyed"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
